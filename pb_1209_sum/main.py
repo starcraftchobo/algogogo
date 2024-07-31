@@ -1,6 +1,6 @@
 
-# import sys
-# sys.stdin = open("input.txt")
+import sys
+sys.stdin = open("sum_input.txt")
 
 for _ in range(10):
     arr = list()
