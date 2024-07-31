@@ -33,34 +33,44 @@ print(f)                                문자열 1개 출력하는 예제
 아래 구문을 사용하기 위해서는 import sys가 필요합니다.
 단, 채점을 위해 코드를 제출하실 때에는 반드시 아래 구문을 지우거나 주석 처리 하셔야 합니다.
 '''
-import sys
-sys.stdin = open("input.txt", "r")
+# import sys
+# sys.stdin = open("sample_input.txt", "r")
 
 T = int(input())
 # 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
 for test_case in range(1, T + 1):
-    N, K = list(map(int, input().split()))
-    print(N, K)
-    puzzle = [list(map(int, input().split())) for _ in range(N)]
-    print(puzzle)
+    print(f'#{test_case}', end=' ')
+    N = int(input())
+    a = [list(map(int, input().split())) for _ in range(N)] # 각 박스들의 모서리 index&color
+    pan = [[0] * 10 for _ in range(10)]                     # 10*10짜리 판
 
-    result = 0
+    count = 0
 
-    # def asd(p_in, index): #
-    #     while index <= N - K:
-    #         asd(,self):
-    #         global result
-    #         count = 0
-    #         for i in range(index):
-    #             if puzzle[p_in][i] == 1
-    #                 count += 1
-    #             else:
-    #                 break
-    #         if count == K:
-    #             result += 1
-    #     return index + count
-    #
-    # for i in range(N):
-    #     index = 0
-    #     if index = 0:
-    #         index+=1
+    def box(num): # 모서리 정보대로 박스 만들기
+        global count
+        r1, c1 = a[num][0:2]
+        r2, c2 = a[num][2:4]
+        color = a[num][4]
+        # print(r1, r2, c1, c2, color)
+        for i in range(r1, r2+1):                           # box 대로 색칠시작
+            for j in range(c1, c2+1):
+                if pan[i][j] == 0 or pan[i][j] == color:
+                    pan[i][j] = color
+                else:                                       # 판의 원래 색이 다른색깔이면 +1
+                    count += 1
+
+    for i in range(N):
+        box(i)
+    print(count)
+
+        # arr = [[color] * (r2-r1) for _ in range(c1, c2+1)]
+        # print(arr)
+        # return arr
+
+    box(1)
+    # for i in range(N):                    # box index 설정
+    #     box(i)
+
+        # for j in range(r1,r2+1):
+        #     for k in range(c1, c2+1):
+
