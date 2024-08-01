@@ -1,14 +1,15 @@
 ############## 주의 ##############
 # 입력을 받기위한 input 함수는 절대 사용하지 않습니다.
 # 반드시 재귀 함수 형태로 구현해야 합니다.
-
+idx = 0
 def reverse_string(s):
-    if s != None:
-        print(s[-1])
-        ss = s.strip(s[-1])
-        return reverse_string(ss)
-    else:
-        pass
+    global idx
+    idx -= 1
+    if idx < -len(s): # 멈춰!
+        return 
+
+    return  s[idx] + reverse_string(s)
+
 
 
 

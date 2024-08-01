@@ -2,9 +2,13 @@
 # 입력을 받기위한 input 함수는 절대 사용하지 않습니다.
 def find_max_position(matrix):
     N = len(matrix)
-    sum_column = list(map(lambda x: sum(x), for x in matrix))
-    print(sum_column)
-
+    max_num = matrix[0][0]
+    a, b = 0, 0
+    for i in range(N):
+        for j in range(N):
+            if max_num < matrix[j][i]:
+                a, b = j, i
+    return a, b
 
 # 추가 테스트를 위한 코드 작성 가능
 # 예) print(함수명(인자))

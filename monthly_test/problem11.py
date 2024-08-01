@@ -1,9 +1,21 @@
 ############## 주의 ##############
 # 입력을 받기위한 input 함수는 절대 사용하지 않습니다.
 def max_adjacent_sum(matrix):
-    pass
-    # 여기에 코드를 작성하여 함수를 완성합니다.
+    matrix.insert([0]*len(matrix), 0)
+    matrix.append([0]*len(matrix))
+    for column in matrix:
+        column.insert(0, 0)
+        matrix.append(0)
+    
+    di = [0, -1, 0, 1]
+    dj = [-1, 0, 1, 0]   
+    
+    sum_list = []
 
+    for i in range(1, N+1):
+        for j in range(1, N+1):
+            for k in range(4):
+                sum = matrix[][]
 
 # 추가 테스트를 위한 코드 작성 가능
 # 예) print(함수명(인자))

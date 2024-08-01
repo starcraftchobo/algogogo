@@ -2,15 +2,22 @@
 # 입력을 받기위한 input 함수는 절대 사용하지 않습니다.
 # 내장함수 len 함수를 사용하지 않습니다.
 def longest_string(str_list):
-    
-    def length(word): #각 단어의 글자수 세는 함수
-        count = 0
-        for letter in word:
-            count += 1
-        return count
-    
+    lst_count = []
+    length = 0
     for string in str_list:# 각 단어의 글자수 리턴
-        length(string)
+        count = 0
+        length += 1
+        for letter in string:
+            count += 1
+        lst_count.append(count)
+
+    maximum = lst_count[0]
+    for idx in range(length):
+        if maximum < lst_count[idx]:
+            maximum = lst_count[idx]
+            a = idx
+
+    return str_list[a]
         
     
 
