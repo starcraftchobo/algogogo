@@ -9,6 +9,10 @@ for test_case in range(1, T + 1):
     x = 0
     y = 99
 
+    dx = [-1, 1, 0, 0]
+    dy = [0, 0, -1, 1]
+
+
     for i in range(100):                # 2 좌표 찾기
         if ladder[y][i] == 2:
             a = i
@@ -17,18 +21,28 @@ for test_case in range(1, T + 1):
     status = 0
 
     while y != 0:
-        if ladder[y][x-1] and ladder[y][x+1] == 0:  # 위가 1
-            if:                                 # 일직선
+        if ladder[y][x-1] and ladder[y][x+1] == 0:  # 왼오 0 -> 위로 1
+            y -= 1
+        elif ladder[y][x+dx[0]] == 1:                                 # 일직선
+            while ladder[y][x+dx[0]]:                                 # 왼 0일때까지
+                a -= 1                                                # 왼
+            else:
+                y -= 1
+        else:
+            while dx+1 == 1:                                        # 오 0일때까지
+                a += 1                                              # 오
+            else:
+                y -= 1
 
-            elif:                               # 왼 막힌 삼거리
+    print(a)
 
-            else:                               # 오 막힌 삼거리
 
-        if ladder[y][x] and ladder[y][x] == 0:  # 위아래 0이면
-            if :                                # 전에 왼
-                if ladder[y][x-1] == 0 and ladder[y][x-1] == 0: # 가로 먼저 확인                                            # 방향 그대로
-            else:                               # 전에 오
-                if ladder[y][x-1] == 0 and ladder[y][x-1] == 0: # 가로 먼저 확인
+
+        # if ladder[y][x] and ladder[y][x] == 0:  # 위 0이면
+        #     if :                                # 전에 왼
+        #         if ladder[y][x-1] == 0 and ladder[y][x-1] == 0: # 가로 먼저 확인                                            # 방향 그대로
+        #     else:                               # 전에 오
+        #         if ladder[y][x-1] == 0 and ladder[y][x-1] == 0: # 가로 먼저 확인
 
 
 
