@@ -1,49 +1,35 @@
-import sys
-sys.stdin = open("input.txt", "r")
+# import sys
+# sys.stdin = open("inpu2t.txt", "r")
 
-T = int(input())
 # 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
-for test_case in range(1, T + 1):
-    ladder = [list(map(int, input().split()))]
-    print(ladder)
+for test_case in range(1, 11):
+    N = int(input())
+    ladder = [list(map(int, input().split())) for _ in range(100)]
+
+    for i in range(100):
+        ladder[i].insert(0, 0)
+        ladder[i].insert(101, 0)
     x = 0
     y = 99
 
-    dx = [-1, 1, 0, 0]
-    dy = [0, 0, -1, 1]
-
-
-    for i in range(100):                # 2 좌표 찾기
+    # print(len(ladder))
+    for i in range(101):  # 2 좌표 찾기
         if ladder[y][i] == 2:
-            a = i
+            x = i
             break
 
-    status = 0
-
     while y != 0:
-        if ladder[y][x-1] and ladder[y][x+1] == 0:  # 왼오 0 -> 위로 1
+        if ladder[y][x - 1] == 1:  # 일직선
+            while ladder[y][x - 1] == 1:  # 왼 0일때까지
+                x -= 1  # 왼
+
+        elif ladder[y][x + 1] == 1:
+            while ladder[y][x + 1] == 1:  # 오 0일때까지
+                x += 1  # 오
+        if ladder[y - 1][x] == 1:
             y -= 1
-        elif ladder[y][x+dx[0]] == 1:                                 # 일직선
-            while ladder[y][x+dx[0]]:                                 # 왼 0일때까지
-                a -= 1                                                # 왼
-            else:
-                y -= 1
-        else:
-            while dx+1 == 1:                                        # 오 0일때까지
-                a += 1                                              # 오
-            else:
-                y -= 1
 
-    print(a)
+        else:  # 왼오 0 -> 위로 1
+            y -= 1
 
-
-
-        # if ladder[y][x] and ladder[y][x] == 0:  # 위 0이면
-        #     if :                                # 전에 왼
-        #         if ladder[y][x-1] == 0 and ladder[y][x-1] == 0: # 가로 먼저 확인                                            # 방향 그대로
-        #     else:                               # 전에 오
-        #         if ladder[y][x-1] == 0 and ladder[y][x-1] == 0: # 가로 먼저 확인
-
-
-
-
+    print(f'#{N}', x - 1)
