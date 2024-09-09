@@ -1,23 +1,28 @@
 import sys
 sys.stdin = open("sample_input.txt", "r")
-
-def search(x, y):
-    stack = [(x,y)]
-    visited[x][y] = 1
+'''
+델타 탐색으로
+1 못가고
+visited 만들어서 한번 간곳은 못가게 하고
+pop해서 3이면 return 1
+'''
+def search(r, c):
+    stack = [(r, c)]
+    visited[r][c] = 1
     # 언제까지탐색할까 --> 3나올때까지?
     while stack:
-        x, y = stack.pop()
+        y, x = stack.pop()
         for i in range(4):
-            nx = x + dx[i]
             ny = y + dy[i]
+            nx = x + dx[i]
             # 미로 범위 벗어나지 않는지 &&
-            if 0 <= nx < N and 0 <= ny < N and nemo[nx][ny] != 1 and visited[nx][ny] != 1:
-                if nemo[nx][ny] == 3:
+            if 0 <= nx < N and 0 <= ny < N and nemo[ny][nx] != 1 and visited[ny][nx] != 1:
+                if nemo[ny][nx] == 3:
                     return 1                        # 1 반환 후 종료
                 # 3이 아니라면
-                stack.append((nx, ny))
+                stack.append((ny, nx))
                 # 방문 처리
-                visited[nx][ny] = 1
+                visited[ny][nx] = 1
     return 0
 
 dx = [-1, 0, 1, 0]
