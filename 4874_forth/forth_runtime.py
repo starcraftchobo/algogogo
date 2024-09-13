@@ -12,8 +12,6 @@ def cal(a):
     if a.isdigit():
         stack.append(int(a))
         return
-    elif a == '.':
-
     else:
         while len(stack) >= 2:
             if a == '+':
@@ -35,7 +33,7 @@ def cal(a):
             else:
                 return 'error'
         if a == '.':
-            if stack:
+            if len(stack) == 1:
                 print(stack.pop())
                 return
             else:
@@ -55,4 +53,4 @@ for tc in range(1, T+1):
             print('error')
             break
 end = time.time()
-print(end - start)
+# print(end - start)
